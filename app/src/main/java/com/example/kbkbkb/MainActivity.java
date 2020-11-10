@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // 오른쪽 하단 버튼 (은행 선택용) - 추후 보강
         final AlertDialog.Builder oDialog = new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
         FloatingActionButton fab = findViewById(R.id.entry);
         fab.setOnClickListener(new View.OnClickListener() {
