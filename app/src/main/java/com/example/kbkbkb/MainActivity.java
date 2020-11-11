@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.example.kbkbkb.ui.ServerCommunicationActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         // 오른쪽 하단 버튼 (은행 선택용) - 추후 보강
         final AlertDialog.Builder oDialog = new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
         FloatingActionButton fab = findViewById(R.id.entry);
+        final Intent intent = new Intent(this, ServerCommunicationActivity.class);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which)
                             {
                                 if ("국민".equals(oItems[which])) {
-                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.naver.com")));
+                                    startActivity(intent);
                                 } else if ("우리".equals(oItems[which])) {
                                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com")));
                                 } else if ("신한".equals(oItems[which])) {
