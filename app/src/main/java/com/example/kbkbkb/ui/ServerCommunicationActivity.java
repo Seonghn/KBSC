@@ -88,6 +88,7 @@ public class ServerCommunicationActivity extends AppCompatActivity {
 
         //edit text 입력검사 필요
         //비밀번호 보안 관련 작업 필요
+        //progress bar 처리 필요
     }
 
     //네트워크 처리를 비동기 방식으로 처리
