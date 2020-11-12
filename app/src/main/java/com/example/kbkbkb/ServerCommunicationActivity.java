@@ -1,20 +1,33 @@
 package com.example.kbkbkb;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.kbkbkb.R;
 
 import java.io.DataInputStream;
@@ -38,6 +51,8 @@ public class ServerCommunicationActivity extends AppCompatActivity {
     private EditText sc_account_et, sc_birth_et, sc_passwd_et;
     private String output;
 
+    //알림창 출력 변수
+    private AlertDialog dig;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +94,9 @@ public class ServerCommunicationActivity extends AppCompatActivity {
                     sc_birth_et.setText("");
                     sc_passwd_et.setText("");
 
+                    //알람 띄우기
+                    dig.show();
+
                     //서버 통신
                     Connect connect = new Connect();
                     connect.execute(send_text); //edittext에서 입력한 값을 전달
@@ -86,9 +104,29 @@ public class ServerCommunicationActivity extends AppCompatActivity {
             }
         });
 
+        //로딩부분 구현 (PS. 안드로이드 정책상 8.0이상부터 앱은 사용자와 계속 상호작용해야함. 따라서, 바탕을 연속 클릭시 나가짐.
+        dig = new AlertDialog.Builder(ServerCommunicationActivity.this).create();
+        LayoutInflater factory = LayoutInflater.from(ServerCommunicationActivity.this);
+        final View customView = factory.inflate(R.layout.loading, null);
+
+        //Gif 이미지 처리부분
+        final ImageView imgView = customView.findViewById(R.id.ivloading);
+        Glide.with(ServerCommunicationActivity.this).load(R.raw.loading).into(imgView);
+
+        //바탕 투명하게 설정
+        dig.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        dig.setView(customView);
+        //button 표시 - 나중에 지울 부분
+        /*dig.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+            }
+        });*/
+
         //edit text 입력검사 필요
         //비밀번호 보안 관련 작업 필요
-        //progress bar 처리 필요
     }
 
     //네트워크 처리를 비동기 방식으로 처리
@@ -133,6 +171,12 @@ public class ServerCommunicationActivity extends AppCompatActivity {
             //sc_tv1.append("보낸 메세지: " + output_message + "\n받은 메세지: " + output);
             Log.d("CSOS",params[0]);
             sc_tv1.append(params[0]);
+            dig.dismiss();
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
         }
     }
 }
