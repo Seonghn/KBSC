@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/server_communication_linear"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/server_communication_linear">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -36,9 +36,9 @@
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
                     android:hint="ex) 58890204070569"
+                    android:text="43140104100408"
                     android:textColorHint="#88808080"
-                    android:textSize="10dp"
-                    android:text="43140104100408"/>
+                    android:textSize="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -60,9 +60,9 @@
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
                     android:hint="ex) 960520"
+                    android:text="971028"
                     android:textColorHint="#88808080"
-                    android:textSize="10dp"
-                    android:text="971028"/>
+                    android:textSize="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -84,29 +84,36 @@
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
                     android:hint="ex) 0000"
+                    android:text="1089"
                     android:textColorHint="#88808080"
-                    android:textSize="10dp"
-                    android:text="1089"/>
+                    android:textSize="10dp" />
             </LinearLayout>
         </LinearLayout>
 
         <!-- 서버 전송 버튼 -->
-        <Button
-            android:id="@+id/server_send_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:text="계좌정보 받아오기" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right"
+            android:layout_margin="10dp">
+
+            <Button
+                android:id="@+id/server_send_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="계좌정보 받아오기" />
+        </LinearLayout>
     </LinearLayout>
 
     <!-- 계좌 정보 출력 란 -->
 
     <ScrollView
+        android:id="@+id/server_communication_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-        android:background="@drawable/account_print_border"
-        android:id="@+id/server_communication_scroll">
+        android:background="@drawable/account_print_border">
 
         <TextView
             android:id="@+id/sc_tv"

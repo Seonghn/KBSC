@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.example.kbkbkb.ServerCommunicationActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.view.View;
 
@@ -25,7 +23,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         // 오른쪽 하단 버튼 (은행 선택용) - 추후 보강
         final AlertDialog.Builder oDialog = new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
         FloatingActionButton fab = findViewById(R.id.entry);
-        final Intent intent = new Intent(this, ServerCommunicationActivity.class);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which)
                             {
                                 if ("국민".equals(oItems[which])) {
-                                    startActivity(intent);
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com")));
                                 } else if ("우리".equals(oItems[which])) {
                                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com")));
                                 } else if ("신한".equals(oItems[which])) {
@@ -77,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
+                R.id.nav_home, R.id.nav_sever_com, R.id.nav_slideshow,
                 R.id.nav_tools, R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();

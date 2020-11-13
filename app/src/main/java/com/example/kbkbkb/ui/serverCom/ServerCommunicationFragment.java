@@ -1,4 +1,4 @@
-package com.example.kbkbkb;
+package com.example.kbkbkb.ui.serverCom;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,21 +18,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.ui.AppBarConfiguration;
 
 import com.bumptech.glide.Glide;
+import com.example.kbkbkb.R;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class ServerCommunicationActivity extends AppCompatActivity {
+public class ServerCommunicationFragment extends Fragment {
+
+    private ServerCommunicationModel serverCommunicationModel;
+
     private LinearLayout Lscreen;
 
+    //상단 바 관련 변수
+    private AppBarConfiguration mAppBarConfiguration;
+
     //서버 관련 변수
-    private String serverip = "220.149.236.41";
-    private int serverport = 8506;
+    private String serverip = "220.149.236.154";
+    private int serverport = 8507;
     private Socket client;
     private DataOutputStream dataOutputStream;
     private DataInputStream dataInputStream;
@@ -44,28 +55,36 @@ public class ServerCommunicationActivity extends AppCompatActivity {
 
     //알림창 출력 변수
     private AlertDialog dig;
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        serverCommunicationModel =
+                ViewModelProviders.of(this).get(ServerCommunicationModel.class);
+        View root = inflater.inflate(R.layout.fragment_servercom, container, false);
+
+        return root;
+    }
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.server_communication);//화면에 보여질 뷰 설정
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         //view 연결 코드
-        sc_tv1 = (TextView)findViewById(R.id.sc_tv);
-        sc_btn1 = (Button)findViewById(R.id.server_send_btn);
-        sc_account_et = (EditText)findViewById(R.id.account_et);
-        sc_birth_et = (EditText)findViewById(R.id.birth_et);
-        sc_passwd_et = (EditText)findViewById(R.id.passwd_et);
+        sc_tv1 = (TextView)getView().findViewById(R.id.sc_tv);
+        sc_btn1 = (Button)getView().findViewById(R.id.server_send_btn);
+        sc_account_et = (EditText)getView().findViewById(R.id.account_et);
+        sc_birth_et = (EditText)getView().findViewById(R.id.birth_et);
+        sc_passwd_et = (EditText)getView().findViewById(R.id.passwd_et);
 
         //edittext 자연스러운 키보드 숨김 코드 (키보드가 아닌 바깥쪽 터치시 키보드가 사라짐)
-        Lscreen = (LinearLayout)findViewById(R.id.server_communication_linear); //가장 상위 Linearlayout 가져옴
+        Lscreen = (LinearLayout)getView().findViewById(R.id.server_communication_linear); //가장 상위 Linearlayout 가져옴
 
         Lscreen.setOnClickListener(new View.OnClickListener() { //상위 Linearlayout click 시 키보드 사라짐
             @Override
             public void onClick(View v) {
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE); //키보드 관련 method
-                if (getCurrentFocus() instanceof EditText) {
-                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0); //EditText가 아니면 키보드 숨김
-                    getCurrentFocus().clearFocus();
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE); //키보드 관련 method
+                if (getActivity().getCurrentFocus() instanceof EditText) {
+                    imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0); //EditText가 아니면 키보드 숨김
+                    getActivity().getCurrentFocus().clearFocus();
                 }
             }
         });
@@ -78,7 +97,7 @@ public class ServerCommunicationActivity extends AppCompatActivity {
 
                 if(sc_account_et.getText().toString().length() == 0 || sc_birth_et.getText().toString().length() == 0 || sc_passwd_et.getText().toString().length() == 0) {
                     //만약 edittext가 어느 곳이든 빈 곳이라면
-                    Toast.makeText(ServerCommunicationActivity.this,"빈칸 없이 입력해주세요.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"빈칸 없이 입력해주세요.",Toast.LENGTH_LONG).show();
                 } else {
                     //edittext 초기화
                     sc_account_et.setText("");
@@ -96,13 +115,13 @@ public class ServerCommunicationActivity extends AppCompatActivity {
         });
 
         //로딩부분 구현 (PS. 안드로이드 정책상 8.0이상부터 앱은 사용자와 계속 상호작용해야함. 따라서, 바탕을 연속 클릭시 나가짐.
-        dig = new AlertDialog.Builder(ServerCommunicationActivity.this).create();
-        LayoutInflater factory = LayoutInflater.from(ServerCommunicationActivity.this);
+        dig = new AlertDialog.Builder(getActivity()).create();
+        LayoutInflater factory = LayoutInflater.from(getActivity());
         final View customView = factory.inflate(R.layout.loading, null);
 
         //Gif 이미지 처리부분
         final ImageView imgView = customView.findViewById(R.id.ivloading);
-        Glide.with(ServerCommunicationActivity.this).load(R.raw.loading2).into(imgView);
+        Glide.with(getActivity()).load(R.raw.loading).into(imgView);
 
         //바탕 투명하게 설정
         dig.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -118,9 +137,10 @@ public class ServerCommunicationActivity extends AppCompatActivity {
 
         //edit text 입력검사 필요
         //비밀번호 보안 관련 작업 필요
+
+        super.onActivityCreated(savedInstanceState);
     }
 
-    //네트워크 처리를 비동기 방식으로 처리
     private class Connect extends AsyncTask<String,String,Void> {
         private String output_message;
         private String input_message;
