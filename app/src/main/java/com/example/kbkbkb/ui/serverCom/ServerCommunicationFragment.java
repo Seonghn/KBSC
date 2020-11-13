@@ -2,6 +2,7 @@ package com.example.kbkbkb.ui.serverCom;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -33,8 +34,6 @@ import java.net.Socket;
 
 public class ServerCommunicationFragment extends Fragment {
 
-    private ServerCommunicationModel serverCommunicationModel;
-
     private LinearLayout Lscreen;
 
     //상단 바 관련 변수
@@ -56,10 +55,15 @@ public class ServerCommunicationFragment extends Fragment {
     //알림창 출력 변수
     private AlertDialog dig;
 
+    //계좌 저장 변수
+    private SharedPreferences account_sp;
+
+    public ServerCommunicationFragment() {
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        serverCommunicationModel =
-                ViewModelProviders.of(this).get(ServerCommunicationModel.class);
+        ServerCommunicationModel serverCommunicationModel = ViewModelProviders.of(this).get(ServerCommunicationModel.class);
         View root = inflater.inflate(R.layout.fragment_servercom, container, false);
 
         return root;
@@ -135,7 +139,6 @@ public class ServerCommunicationFragment extends Fragment {
             }
         });*/
 
-        //edit text 입력검사 필요
         //비밀번호 보안 관련 작업 필요
 
         super.onActivityCreated(savedInstanceState);
