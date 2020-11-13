@@ -111,7 +111,7 @@ public class ServerCommunicationActivity extends AppCompatActivity {
 
         //Gif 이미지 처리부분
         final ImageView imgView = customView.findViewById(R.id.ivloading);
-        Glide.with(ServerCommunicationActivity.this).load(R.raw.loading).into(imgView);
+        Glide.with(ServerCommunicationActivity.this).load(R.raw.loading2).into(imgView);
 
         //바탕 투명하게 설정
         dig.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
