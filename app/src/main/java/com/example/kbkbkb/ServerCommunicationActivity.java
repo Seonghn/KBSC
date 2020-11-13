@@ -1,26 +1,18 @@
 package com.example.kbkbkb;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +20,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.example.kbkbkb.R;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -39,7 +30,7 @@ public class ServerCommunicationActivity extends AppCompatActivity {
     private LinearLayout Lscreen;
 
     //서버 관련 변수
-    private String serverip = "220.149.236.154";
+    private String serverip = "220.149.236.41";
     private int serverport = 8506;
     private Socket client;
     private DataOutputStream dataOutputStream;
