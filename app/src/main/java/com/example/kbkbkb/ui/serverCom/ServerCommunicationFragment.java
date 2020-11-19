@@ -8,10 +8,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -55,10 +57,93 @@ public class ServerCommunicationFragment extends Fragment {
     //알림창 출력 변수
     private AlertDialog dig;
 
-    //계좌 저장 변수
-    private SharedPreferences account_sp;
+    //SharedPrefernce를 이용한 계좌 저장 변수
+    private PreferenceManager account_sp;
+    private CheckBox account_cb;
+    private String sp_ackey = "ac_kbkbkb";
+    private String sp_btkey = "bt_kbkbkb";
+    private String sp_cbkey = "cb_kbkbkb";
+    private Context cont; //계속 불리면 연산량이 많을 것 같아 변수로 저장
+
+
+    //SharedPreference 클래스 정의
+    public static class PreferenceManager {
+
+        private static SharedPreferences getPreferences(Context context) {
+            return context.getSharedPreferences("preference",context.MODE_PRIVATE);
+        }
+
+       //계좌 정보 저장
+        public static void setAccountInfo(Context context, String key, String value) {
+            SharedPreferences preferences = getPreferences(context); //context끼리 각각의 sharedPreference를 저장하고 있다.
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(key,value); //키 값에 맞추어 String 값 삽입
+            editor.commit();
+        }
+
+        //생년월일 정보 저장
+        public static void setBirth(Context context, String key, Integer value) {
+            SharedPreferences preferences = getPreferences(context);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt(key,value);
+            editor.commit();
+        }
+
+        //체크박스 체크여부 정보 저장
+        public static void setCheckBox(Context context, String key, Boolean value) {
+            SharedPreferences preferences = getPreferences(context);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean(key,value);
+            editor.commit();
+        }
+
+
+        //저장된 계좌 정보 출력
+        public static String getAccountInfo(Context context, String key) {
+            SharedPreferences preferences = getPreferences(context);
+            String value = preferences.getString(key,"");
+            return value;
+        }
+
+        //저장된 생년월일 정보 출력
+        public static Integer getBirth(Context context, String key) {
+            SharedPreferences preferences = getPreferences(context);
+            Integer value = preferences.getInt(key,0);
+            return value;
+        }
+
+        //저장된 체크박스 여부 출력
+        public static Boolean getCheckBox(Context context, String key) {
+            SharedPreferences preferences = getPreferences(context);
+            return preferences.getBoolean(key,false);
+        }
+
+
+        //키 삭제
+        public static void removeKey(Context context,String key) {
+            SharedPreferences preferences = getPreferences(context);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.remove(key);
+            editor.commit();
+        }
+
+        //전체 삭제
+        public static void clear(Context context) {
+            SharedPreferences preferences = getPreferences(context);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.clear();
+            editor.commit();
+        }
+    }
 
     public ServerCommunicationFragment() {
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        //그냥 getContext하면 정보를 못받는다.(null을 받는다) 이것 때문에 SharedPreference 관련 오류가 발생하였고 null이 아닌 Activity context정보를 받아야 해결이 가능하였다.
+        super.onAttach(context);
+        cont = context;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -78,6 +163,7 @@ public class ServerCommunicationFragment extends Fragment {
         sc_account_et = (EditText)getView().findViewById(R.id.account_et);
         sc_birth_et = (EditText)getView().findViewById(R.id.birth_et);
         sc_passwd_et = (EditText)getView().findViewById(R.id.passwd_et);
+        account_cb = (CheckBox) getView().findViewById(R.id.account_cb);
 
         //edittext 자연스러운 키보드 숨김 코드 (키보드가 아닌 바깥쪽 터치시 키보드가 사라짐)
         Lscreen = (LinearLayout)getView().findViewById(R.id.server_communication_linear); //가장 상위 Linearlayout 가져옴
@@ -104,8 +190,6 @@ public class ServerCommunicationFragment extends Fragment {
                     Toast.makeText(getActivity(),"빈칸 없이 입력해주세요.",Toast.LENGTH_LONG).show();
                 } else {
                     //edittext 초기화
-                    sc_account_et.setText("");
-                    sc_birth_et.setText("");
                     sc_passwd_et.setText("");
 
                     //알람 띄우기
@@ -139,9 +223,82 @@ public class ServerCommunicationFragment extends Fragment {
             }
         });*/
 
+
+        /*Sharedpreference 정보를 토대로 계좌 정보 저장 및 출력*/
+        account_sp.getPreferences(cont);
+
+        //checkbox가 체크되는 순간 callback되어 불러진다.
+        account_cb.setOnClickListener(new CheckBox.OnClickListener() { //매개변수가 자동완성이 안되서 놀람.
+            @Override
+            public void onClick(View v) {
+                if(account_cb.isChecked()) { //checkbox가 체크가 되는 순간 edittext에 있는 정보 저장, 체크가 되는 순간 말고도 나가는 순간에도 정보를 저장하고 있어야함, 버튼 클릭시에도 저장해야함
+                    account_sp.setAccountInfo(cont, sp_ackey, sc_account_et.getText().toString());
+                    //빈칸인 경우, number format이 아니기 때문에 오류가 발생하여 그냥 넘기도록 한다.
+                    try {
+                        account_sp.setBirth(cont, sp_btkey, Integer.parseInt(sc_birth_et.getText().toString()));
+                    } catch (Exception e) {
+
+                    }
+                    account_sp.setCheckBox(cont, sp_cbkey, true);
+                } else { //check가 안된 경우
+                    //false로 저장
+                    account_sp.setCheckBox(cont, sp_cbkey, false);
+                }
+            }
+        });
+
+        //먼저 checkbox의 표시여부를 받아온다.
+
+        Boolean checkbox_check = PreferenceManager.getCheckBox(getContext(), sp_cbkey);
+
+        //checkbox 표시되는 것에 따라
+        if(checkbox_check) { //checkbox가 true라고 저장되어 있다면
+            //체크박스를 체크
+            account_cb.setChecked(true);
+
+            //나머지 계좌 및 생년월일 정보를 가져오고
+            String account_number = account_sp.getAccountInfo(cont,sp_ackey);
+            Integer birth_number = account_sp.getBirth(cont,sp_btkey);
+
+            //저장된 정보로 설정
+            sc_account_et.setText(account_number);
+            sc_birth_et.setText(birth_number.toString());
+        }
+
+
         //비밀번호 보안 관련 작업 필요
 
         super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onStop() {
+        //fragment가 없어질 때도 저장
+        super.onStop();
+        if(account_cb.isChecked()) {
+            account_sp.removeKey(cont, sp_ackey);
+            account_sp.setAccountInfo(cont, sp_ackey, sc_account_et.getText().toString());
+            try {
+                account_sp.setBirth(cont, sp_btkey, Integer.parseInt(sc_birth_et.getText().toString()));
+            } catch (Exception e) {
+
+            }
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        //fragment가 view에서 해제되는 순간에도 저장
+        if(account_cb.isChecked()) {
+            account_sp.removeKey(cont, sp_ackey);
+            account_sp.setAccountInfo(cont, sp_ackey, sc_account_et.getText().toString());
+            try {
+                account_sp.setBirth(cont, sp_btkey, Integer.parseInt(sc_birth_et.getText().toString()));
+            } catch (Exception e) {
+
+            }
+        }
+        super.onDestroyView();
     }
 
     private class Connect extends AsyncTask<String,String,Void> {
