@@ -29,7 +29,6 @@
         </activity>
         <!-- Activity 등록코드 -->
         <activity android:name=".MainActivity"/>
-        <activity android:name="ServerCommunicationActivity"/>
     </application>
 
 </manifest>

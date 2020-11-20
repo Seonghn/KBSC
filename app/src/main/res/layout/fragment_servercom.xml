@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/server_communication_linear"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/server_communication_linear">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -29,6 +29,7 @@
                     android:layout_height="wrap_content"
                     android:text="계좌정보" />
 
+                <!--국민은행 기준 계좌번호 길이 14 -->
                 <EditText
                     android:id="@+id/account_et"
                     android:layout_width="match_parent"
@@ -38,7 +39,8 @@
                     android:hint="ex) 58890204070569"
                     android:textColorHint="#88808080"
                     android:textSize="10dp"
-                    android:text="43140104100408"/>
+                    android:inputType="numberDecimal"
+                    android:maxLength="14"/>
             </LinearLayout>
 
             <LinearLayout
@@ -62,7 +64,8 @@
                     android:hint="ex) 960520"
                     android:textColorHint="#88808080"
                     android:textSize="10dp"
-                    android:text="971028"/>
+                    android:inputType="numberDecimal"
+                    android:maxLength="6"/>
             </LinearLayout>
 
             <LinearLayout
@@ -86,27 +89,42 @@
                     android:hint="ex) 0000"
                     android:textColorHint="#88808080"
                     android:textSize="10dp"
-                    android:text="1089"/>
+                    android:inputType="numberPassword"
+                    android:maxLength="4"/>
             </LinearLayout>
         </LinearLayout>
 
         <!-- 서버 전송 버튼 -->
-        <Button
-            android:id="@+id/server_send_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:text="계좌정보 받아오기" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/account_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="계좌정보 저장"
+                android:textSize="12dp"/>
+
+            <Button
+                android:id="@+id/server_send_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="계좌정보 받아오기" />
+        </LinearLayout>
     </LinearLayout>
 
     <!-- 계좌 정보 출력 란 -->
 
     <ScrollView
+        android:id="@+id/server_communication_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-        android:background="@drawable/account_print_border"
-        android:id="@+id/server_communication_scroll">
+        android:background="@drawable/account_print_border">
 
         <TextView
             android:id="@+id/sc_tv"

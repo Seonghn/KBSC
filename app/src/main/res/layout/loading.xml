@@ -7,6 +7,5 @@
         <ImageView
             android:id="@+id/ivloading"
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            />
+            android:layout_height="100dp"/>
 </LinearLayout>
