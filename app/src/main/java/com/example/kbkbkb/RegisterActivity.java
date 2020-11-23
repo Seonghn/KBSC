@@ -5,23 +5,68 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText edit1, edit2, edit3, edit4;
-
+    EditText acc_num,bir_num,edit1, edit2, edit3, edit4;
+    LinearLayout linearLayout;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acc_register);
 
+        acc_num = findViewById(R.id.acc_num);
+        bir_num = findViewById(R.id.bir_num);
         edit1 = (EditText) findViewById(R.id.pin1);
         edit2 = (EditText) findViewById(R.id.pin2);
         edit3 = (EditText) findViewById(R.id.pin3);
         edit4 = (EditText) findViewById(R.id.pin4);
+
+        acc_num.requestFocus();
+        acc_num.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (acc_num.length()==14){
+                    linearLayout = findViewById(R.id.birthnumber);
+                    LinearLayout.LayoutParams r_p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+                    linearLayout.setLayoutParams(r_p);
+                    bir_num.requestFocus();
+                }
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        bir_num.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (bir_num.length()==6){
+                    linearLayout = findViewById(R.id.pinnumber);
+                    LinearLayout.LayoutParams r_p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+                    linearLayout.setLayoutParams(r_p);
+                    edit1.requestFocus();
+                }
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         edit1.addTextChangedListener(new TextWatcher() {
             @Override
