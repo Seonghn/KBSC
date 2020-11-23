@@ -35,4 +35,7 @@ dependencies {
     //gif를 동작시키기 위한 glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //slide view를 위한 dependency
+    implementation 'me.relex:circleindicator:1.2.2'
 }
