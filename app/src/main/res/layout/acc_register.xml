@@ -44,7 +44,7 @@
             android:maxLength="14"/>
         <TextView
             android:layout_width="match_parent"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:text="생년월일 6자리 입력"
             android:textSize="20dp"
             android:layout_height="30dp"/>
@@ -59,6 +59,62 @@
             android:inputType="numberDecimal"
             android:background="@null"
             android:maxLength="6"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:text="PIN 4자리 입력"
+            android:textSize="20dp"
+            android:layout_height="30dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <EditText
+                android:inputType="numberDecimal"
+                android:id="@+id/pin1"
+                android:maxLength="1"
+                android:textSize="40dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:hint="●"
+                android:layout_margin="20dp"
+                android:layout_gravity="center"/>
+            <EditText
+                android:inputType="numberDecimal"
+                android:maxLength="1"
+                android:id="@+id/pin2"
+                android:textSize="40dp"
+                android:layout_margin="20dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:hint="●"
+                android:layout_gravity="center"/>
+            <EditText
+                android:inputType="numberDecimal"
+                android:maxLength="1"
+                android:textSize="40dp"
+                android:id="@+id/pin3"
+                android:layout_margin="20dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:hint="●"
+                android:layout_gravity="center"/>
+            <EditText
+                android:inputType="numberDecimal"
+                android:maxLength="1"
+                android:textSize="40dp"
+                android:id="@+id/pin4"
+                android:layout_margin="20dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:hint="●"
+                android:layout_gravity="center"/>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
