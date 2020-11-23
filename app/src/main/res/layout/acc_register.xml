@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/acc_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:background="@drawable/logo"/>
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+                <!--국민은행 기준 계좌번호 길이 14 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:text="계좌정보 입력"
+            android:textSize="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_height="30dp"/>
+        <EditText
+            android:id="@+id/account_et"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="ACCOUNT NUMBER"
+            android:textColorHint="#88808080"
+            android:textSize="20dp"
+            android:inputType="numberDecimal"
+            android:background="@null"
+            android:maxLength="14"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            android:text="생년월일 6자리 입력"
+            android:textSize="20dp"
+            android:layout_height="30dp"/>
+        <EditText
+            android:id="@+id/birth_et"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="******"
+            android:textColorHint="#88808080"
+            android:textSize="20dp"
+            android:inputType="numberDecimal"
+            android:background="@null"
+            android:maxLength="6"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/pin"/>
+
+</LinearLayout>

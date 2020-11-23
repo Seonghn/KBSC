@@ -8,7 +8,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -20,8 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -42,8 +41,8 @@ public class ServerCommunicationFragment extends Fragment {
     private AppBarConfiguration mAppBarConfiguration;
 
     //서버 관련 변수
-    private String serverip = "220.149.236.154";
-    private int serverport = 8507;
+    private String serverip = "220.149.236.41";
+    private int serverport = 8506;
     private Socket client;
     private DataOutputStream dataOutputStream;
     private DataInputStream dataInputStream;

@@ -1,6 +1,9 @@
 package com.example.kbkbkb;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +34,22 @@ public class TutorialActivity extends AppCompatActivity {
         //CircleIndicator 설정
         CircleIndicator indicator = (CircleIndicator)findViewById(R.id.indicator);
         indicator.setViewPager(vpPager);
+
+        Button b1 = (Button) findViewById(R.id.log);
+        Button b2 = (Button) findViewById(R.id.reg);
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+            }
+        });
     }
 
     public static class MyPagerAdapter extends FragmentPagerAdapter {
