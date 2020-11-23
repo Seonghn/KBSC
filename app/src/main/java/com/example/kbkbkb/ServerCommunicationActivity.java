@@ -47,7 +47,7 @@ public class ServerCommunicationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.server_communication);//화면에 보여질 뷰 설정
+//        setContentView(R.layout.server_communication);//화면에 보여질 뷰 설정
 
         //view 연결 코드
         sc_tv1 = (TextView)findViewById(R.id.sc_tv);

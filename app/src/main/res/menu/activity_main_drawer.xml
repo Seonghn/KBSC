@@ -11,7 +11,7 @@
         <item
             android:id="@+id/nav_sever_com"
             android:icon="@drawable/ic_account_list"
-            android:title="Custom" />
+            android:title="@string/menu_custom" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"

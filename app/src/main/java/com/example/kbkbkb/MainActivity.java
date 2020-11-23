@@ -36,37 +36,37 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // 오른쪽 하단 버튼 (은행 선택용) - 추후 보강
-        final AlertDialog.Builder oDialog = new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
-        FloatingActionButton fab = findViewById(R.id.entry);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final CharSequence[] oItems = {"국민", "우리", "신한", "카카오뱅크", "농협", "농협", "농협"};
-                oDialog.setTitle("은행 선택")
-                        .setItems(oItems, new DialogInterface.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which)
-                            {
-                                if ("국민".equals(oItems[which])) {
-                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com")));
-                                } else if ("우리".equals(oItems[which])) {
-                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com")));
-                                } else if ("신한".equals(oItems[which])) {
-                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com")));
-                                } else if ("카카오뱅크".equals(oItems[which])) {
-                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com")));
-                                } else if ("농협".equals(oItems[which])) {
-                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com")));
-                                }
-
-                            }
-                        })
-                        .setCancelable(false)
-                        .show();
-
-            }
-        });
+//        final AlertDialog.Builder oDialog = new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+//        FloatingActionButton fab = findViewById(R.id.entry);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                final CharSequence[] oItems = {"국민", "우리", "신한", "카카오뱅크", "농협", "농협", "농협"};
+//                oDialog.setTitle("은행 선택")
+//                        .setItems(oItems, new DialogInterface.OnClickListener()
+//                        {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which)
+//                            {
+//                                if ("국민".equals(oItems[which])) {
+//                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com")));
+//                                } else if ("우리".equals(oItems[which])) {
+//                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com")));
+//                                } else if ("신한".equals(oItems[which])) {
+//                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com")));
+//                                } else if ("카카오뱅크".equals(oItems[which])) {
+//                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com")));
+//                                } else if ("농협".equals(oItems[which])) {
+//                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.youtube.com")));
+//                                }
+//
+//                            }
+//                        })
+//                        .setCancelable(false)
+//                        .show();
+//
+//            }
+//        });
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
