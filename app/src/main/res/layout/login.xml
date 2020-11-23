@@ -7,118 +7,250 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_height="300dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="200dp"
             android:layout_height="80dp"
-            android:background="@drawable/logo"/>
-
+            android:background="@drawable/logo" />
     </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="380dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="center">
 
-                <!--국민은행 기준 계좌번호 길이 14 -->
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:text="계좌정보 입력"-->
-<!--            android:textSize="20dp"-->
-<!--            android:layout_height="30dp"/>-->
-<!--        <EditText-->
-<!--            android:id="@+id/account_et"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:hint="ACCOUNT NUMBER"-->
-<!--            android:textColorHint="#88808080"-->
-<!--            android:textSize="20dp"-->
-<!--            android:inputType="numberDecimal"-->
-<!--            android:background="@null"-->
-<!--            android:maxLength="14"/>-->
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:text="생년월일 6자리 입력"-->
-<!--            android:textSize="20dp"-->
-<!--            android:layout_height="30dp"/>-->
-<!--        <EditText-->
-<!--            android:id="@+id/birth_et"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:hint="******"-->
-<!--            android:textColorHint="#88808080"-->
-<!--            android:textSize="20dp"-->
-<!--            android:inputType="numberDecimal"-->
-<!--            android:background="@null"-->
-<!--            android:maxLength="6"/>-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <!--국민은행 기준 계좌번호 길이 14 -->
+        <!--        <TextView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:text="계좌정보 입력"-->
+        <!--            android:textSize="20dp"-->
+        <!--            android:layout_height="30dp"/>-->
+        <!--        <EditText-->
+        <!--            android:id="@+id/account_et"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="50dp"-->
+        <!--            android:hint="ACCOUNT NUMBER"-->
+        <!--            android:textColorHint="#88808080"-->
+        <!--            android:textSize="20dp"-->
+        <!--            android:inputType="numberDecimal"-->
+        <!--            android:background="@null"-->
+        <!--            android:maxLength="14"/>-->
+        <!--        <TextView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:text="생년월일 6자리 입력"-->
+        <!--            android:textSize="20dp"-->
+        <!--            android:layout_height="30dp"/>-->
+        <!--        <EditText-->
+        <!--            android:id="@+id/birth_et"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="50dp"-->
+        <!--            android:hint="******"-->
+        <!--            android:textColorHint="#88808080"-->
+        <!--            android:textSize="20dp"-->
+        <!--            android:inputType="numberDecimal"-->
+        <!--            android:background="@null"-->
+        <!--            android:maxLength="6"/>-->
 
         <TextView
             android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="10dp"
             android:text="계좌 비밀번호 입력"
             android:textSize="20dp"
-            android:layout_height="30dp"/>
+            android:gravity="center"/>
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:weightSum="4">
+
             <EditText
-                android:cursorVisible="false"
-                android:inputType="numberDecimal"
                 android:id="@+id/pin1"
-                android:maxLength="1"
-                android:textSize="40dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@null"
-                android:hint="●"
                 android:layout_margin="20dp"
-                android:layout_gravity="center"/>
-            <EditText
+                android:layout_weight="1"
+                android:background="@null"
                 android:cursorVisible="false"
+                android:hint="●"
                 android:inputType="numberDecimal"
                 android:maxLength="1"
+                android:textSize="40dp"
+                android:gravity="center"/>
+
+            <EditText
                 android:id="@+id/pin2"
-                android:textSize="40dp"
-                android:layout_margin="20dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
                 android:background="@null"
-                android:hint="●"
-                android:layout_gravity="center"/>
-            <EditText
                 android:cursorVisible="false"
+                android:hint="●"
                 android:inputType="numberDecimal"
                 android:maxLength="1"
                 android:textSize="40dp"
+                android:gravity="center"/>
+
+            <EditText
                 android:id="@+id/pin3"
-                android:layout_margin="20dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
                 android:background="@null"
-                android:hint="●"
-                android:layout_gravity="center"/>
-            <EditText
                 android:cursorVisible="false"
+                android:hint="●"
                 android:inputType="numberDecimal"
                 android:maxLength="1"
                 android:textSize="40dp"
+                android:gravity="center"/>
+
+            <EditText
                 android:id="@+id/pin4"
-                android:layout_margin="20dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
                 android:background="@null"
+                android:cursorVisible="false"
                 android:hint="●"
-                android:layout_gravity="center"/>
+                android:inputType="numberDecimal"
+                android:maxLength="1"
+                android:textSize="40dp"
+                android:gravity="center"/>
         </LinearLayout>
     </LinearLayout>
 
     <!-- 계좌 정보 출력 란 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:layout_margin="20dp">
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:orientation="horizontal"
+            android:rowCount="5">
 
+            <Button
+                android:id="@+id/btn1"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:text="1"
+                android:textSize="30dp"
+                android:background="#00ff0000"
+                android:layout_marginBottom="10dp"/>
 
+            <Button
+                android:id="@+id/btn2"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:text="2"
+                android:textSize="30dp"
+                android:background="#00ff0000"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/btn3"
+                android:layout_column="2"
+                android:layout_columnWeight="1"
+                android:text="3"
+                android:textSize="30dp"
+                android:background="#00ff0000"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/btn4"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:text="4"
+                android:textSize="30dp"
+                android:background="#00ff0000"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/btn5"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:text="5"
+                android:textSize="30dp"
+                android:background="#00ff0000"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/btn6"
+                android:layout_column="2"
+                android:layout_columnWeight="1"
+                android:text="6"
+                android:textSize="30dp"
+                android:background="#00ff0000"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/btn7"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:text="7"
+                android:textSize="30dp"
+                android:background="#00ff0000"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/btn8"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:text="8"
+                android:textSize="30dp"
+                android:background="#00ff0000"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/btn9"
+                android:layout_column="2"
+                android:layout_columnWeight="1"
+                android:text="9"
+                android:textSize="30dp"
+                android:background="#00ff0000"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/btn10"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:text=""
+                android:textSize="30dp"
+                android:background="#00ff0000"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/btn11"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:text="0"
+                android:textSize="30dp"
+                android:background="#00ff0000"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/btn12"
+                android:layout_column="2"
+                android:layout_columnWeight="1"
+                android:text="del"
+                android:textSize="25dp"
+                android:background="#00ff0000"
+                android:layout_marginBottom="10dp"/>
+        </GridLayout>
+    </LinearLayout>
 
 </LinearLayout>
