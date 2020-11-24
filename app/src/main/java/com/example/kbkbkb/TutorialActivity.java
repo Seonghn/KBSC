@@ -15,6 +15,9 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.kbkbkb.tutorial_fragment.FirstFragment;
 import com.example.kbkbkb.tutorial_fragment.SecondFragment;
 import com.example.kbkbkb.tutorial_fragment.ThirdFragment;
+import com.example.kbkbkb.ui.consumegrade.ConsumeGrade1Fragment;
+import com.example.kbkbkb.ui.consumegrade.ConsumeGrade2Fragment;
+import com.example.kbkbkb.ui.consumegrade.ConsumeGrade3Fragment;
 
 import me.relex.circleindicator.CircleIndicator;
 
@@ -25,8 +28,7 @@ public class TutorialActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tutorial);//layout은 tutorial.xml이 보이게
-
-        //viewpager 및 Adapter 설정
+//viewpager 및 Adapter 설정
         ViewPager vpPager = (ViewPager)findViewById(R.id.vpPager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
@@ -34,6 +36,7 @@ public class TutorialActivity extends AppCompatActivity {
         //CircleIndicator 설정
         CircleIndicator indicator = (CircleIndicator)findViewById(R.id.indicator);
         indicator.setViewPager(vpPager);
+
 
         Button b1 = (Button) findViewById(R.id.log);
         Button b2 = (Button) findViewById(R.id.reg);

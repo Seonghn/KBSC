@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <!-- 소비등급 레이아웃 -->
@@ -36,108 +36,19 @@
         android:layout_height="0.3dp"
         android:background="#F4A460"/>
 
-    <!-- 절약 리포트 레이아웃 -->
-    <LinearLayout
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/consume_vpPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp">
+        android:layout_weight="7"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="절약 Report"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/consume_indicator"
+        app:ci_drawable="@drawable/black_radius"
+        app:ci_height="7dp"
+        app:ci_width="7dp"
+        app:ci_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="어제보다"
-                android:textSize="20dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="-38000"
-                android:textSize="30dp"
-                android:fontFamily="@font/jalnan"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="원 소비"
-                android:textSize="20dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="저번주보다  "
-                android:textSize="20dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="-20000"
-                android:textSize="30dp"
-                android:fontFamily="@font/jalnan"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="원 소비"
-                android:textSize="20dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="저번달보다  "
-                android:textSize="20dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="40000"
-                android:textSize="30dp"
-                android:fontFamily="@font/jalnan"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="원 소비"
-                android:textSize="20dp"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="소비리포트"/>
 </LinearLayout>
