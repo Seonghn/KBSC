@@ -1,6 +1,7 @@
 package com.example.kbkbkb.ui.consumegrade;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,12 +12,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.kbkbkb.R;
+import com.example.kbkbkb.ui.serverCom.ServerCommunicationFragment;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
@@ -49,6 +52,64 @@ public class ConsumeGrade2Fragment extends Fragment {
     //문자열 개수 처리
     HashMap<String, Integer> hm = new HashMap<>();
 
+    //SharedPreference 변수
+    private PreferenceManager consume_sp;
+    private CheckBox account_cb;
+    private String sp_ackey = "ac_kbkbkb";
+    private String sp_btkey = "bt_kbkbkb";
+
+    //SharedPreference 클래스 정의
+    public static class PreferenceManager {
+
+        private static SharedPreferences getPreferences(Context context) {
+            return context.getSharedPreferences("preference",context.MODE_PRIVATE);
+        }
+
+        //첫번째 정보
+        public static void setname(Context context, String key, String value) {
+            SharedPreferences preferences = getPreferences(context); //context끼리 각각의 sharedPreference를 저장하고 있다.
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(key,value); //키 값에 맞추어 String 값 삽입
+            editor.commit();
+        }
+
+        public static void setvalue(Context context, String key, Integer value) {
+            SharedPreferences preferences = getPreferences(context); //context끼리 각각의 sharedPreference를 저장하고 있다.
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt(key,value); //키 값에 맞추어 String 값 삽입
+            editor.commit();
+        }
+
+        //저장된 정보 출력
+        public static String getname(Context context, String key) {
+            SharedPreferences preferences = getPreferences(context);
+            String value = preferences.getString(key,"");
+            return value;
+        }
+
+        public static int getvalue(Context context, String key) {
+            SharedPreferences preferences = getPreferences(context);
+            int value = preferences.getInt(key,0);
+            return value;
+        }
+
+        //키 삭제
+        public static void removeKey(Context context,String key) {
+            SharedPreferences preferences = getPreferences(context);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.remove(key);
+            editor.commit();
+        }
+
+        //전체 삭제
+        public static void clear(Context context) {
+            SharedPreferences preferences = getPreferences(context);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.clear();
+            editor.commit();
+        }
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,26 +133,50 @@ public class ConsumeGrade2Fragment extends Fragment {
         c = database.rawQuery("select * from user", null);
         c.move(0);
 
-        for(int i=0; i<928; i++) {
+        //저장된 정보를 이용하여 db를 확인할건지 정함
+        consume_sp.getPreferences(mContext);
 
-            c.moveToNext();
+        if(consume_sp.getvalue(mContext,"value0") == 0) {//기본값이 0인데 0인 경우, 아직 db를 탐색하지 않은 것으로 봄
+            for (int i = 0; i < 928; i++) {
 
-            String date = c.getString(0);
-            String send = c.getString(2);
-            String money = c.getString(4);
-            //돈 표시의 ,를 없앰
-            String p_money = money.replace(",","");
+                c.moveToNext();
 
-            //현재 날짜로 나눈 것이 아니기 때문에 수정 필요
-            int subdate = Integer.parseInt(date.substring(8,10));
+                String date = c.getString(0);
+                String send = c.getString(2);
+                String money = c.getString(4);
+                //돈 표시의 ,를 없앰
+                String p_money = money.replace(",", "");
 
-            if(subdate >= 25 && subdate <= 31) {
-                if(hm.containsKey(send))
-                    hm.put(send,hm.get(send)+Integer.parseInt(p_money));
-                else{
-                    hm.put(send,Integer.parseInt(p_money));
+                //현재 날짜로 나눈 것이 아니기 때문에 수정 필요
+                int subdate = Integer.parseInt(date.substring(8, 10));
+
+                if (subdate >= 25 && subdate <= 31) {
+                    if (hm.containsKey(send))
+                        hm.put(send, hm.get(send) + Integer.parseInt(p_money));
+                    else {
+                        hm.put(send, Integer.parseInt(p_money));
+                    }
+                } else break;
+            }
+
+            Iterator it = sortByValue(hm).iterator();
+
+            int cnt = 0;
+            int guitar=0;
+
+            while(it.hasNext()) {
+                String t = (String)it.next();
+
+                //사실 같아도 동작하나 혹시 몰라서 큰 값도 포함
+                if (cnt >= 4) {
+                    guitar += hm.get(t);
+                } else {
+                    consume_sp.setname(mContext,"name"+cnt, t);
+                    consume_sp.setvalue(mContext,"value"+cnt, hm.get(t));
+                    cnt++;
                 }
-            } else break;
+            }
+            consume_sp.setvalue(mContext,"value"+4,guitar);
         }
 
         pieChart = (PieChart)view.findViewById(R.id.pie1);
@@ -100,7 +185,7 @@ public class ConsumeGrade2Fragment extends Fragment {
         pieChart.getDescription().setEnabled(false);
         pieChart.setExtraOffsets(5,10,5,5);
 
-        //pieChart.setDragDecelerationFrictionCoef(0.95f);
+        pieChart.setDragDecelerationFrictionCoef(0.95f);
 
         pieChart.setDrawHoleEnabled(false);
         pieChart.setHoleColor(Color.BLACK);
@@ -108,7 +193,7 @@ public class ConsumeGrade2Fragment extends Fragment {
 
         ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
 
-        Iterator it = sortByValue(hm).iterator();
+        /*Iterator it = sortByValue(hm).iterator();
 
         int cnt = 0;
         int guitar=0;
@@ -123,9 +208,13 @@ public class ConsumeGrade2Fragment extends Fragment {
                 yValues.add(new PieEntry(hm.get(t),t));
                 cnt++;
             }
+        }*/
+
+        for(int i=0; i<4; i++) {
+            yValues.add(new PieEntry(consume_sp.getvalue(mContext,"value"+i),consume_sp.getname(mContext,"name"+i)));
         }
 
-        yValues.add(new PieEntry(guitar,"기타"));
+        yValues.add(new PieEntry(consume_sp.getvalue(mContext,"value"+4),"기타"));
 
         Description description = new Description();
         description.setText("이번주"); //라벨

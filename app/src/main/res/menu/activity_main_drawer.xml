@@ -13,7 +13,7 @@
             android:icon="@drawable/ic_account_list"
             android:title="@string/menu_custom" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_consumegrade"
             android:icon="@drawable/ic_baseline_grade_24"
             android:title="소비 등급" />
         <item
