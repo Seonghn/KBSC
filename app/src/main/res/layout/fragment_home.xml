@@ -37,7 +37,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="100dp"
             android:layout_marginRight="105dp"
-            android:text="대충"/>
+            android:text="소비등급"/>
         <ImageView
             android:layout_marginLeft="105dp"
             android:layout_width="150dp"
