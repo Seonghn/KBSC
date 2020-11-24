@@ -16,10 +16,12 @@
 
             <Button
                 android:layout_width="0dp"
+                android:id="@+id/acc_predict"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"/>
             <Button
+                android:id="@+id/con_predict"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -37,7 +39,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="100dp"
             android:layout_marginRight="105dp"
-            android:text="소비등급"/>
+            android:text="잔고 예측"/>
         <ImageView
             android:layout_marginLeft="105dp"
             android:layout_width="150dp"
@@ -50,7 +52,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="100dp"
             android:layout_marginLeft="105dp"
-            android:text="ui"/>
+            android:text="소비 등급"/>
     </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"
@@ -59,6 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <Button
+                android:id="@+id/what_predict"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"/>
@@ -73,6 +76,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="100dp"
-            android:text="틀만"/>
+            android:text="what?"/>
     </FrameLayout>
 </LinearLayout>
