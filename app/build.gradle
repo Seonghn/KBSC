@@ -17,6 +17,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            assets {
+                srcDirs 'src\\main\\assets', 'src\\main\\assets2'
+            }
+        }
+    }
 }
 apply plugin: 'com.android.application'
 // Add this line
@@ -50,4 +57,7 @@ dependencies {
 
     //CurveGraphView를 위한 dependency
     implementation 'com.github.swapnil1104:CurveGraphView:2.1'
+
+    //원 그래프를 위한 dependency
+    implementation 'com.github.PhilJay:MpAndroidChart:v3.0.2'
 }
