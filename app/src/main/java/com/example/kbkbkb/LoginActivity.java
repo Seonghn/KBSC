@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,6 +23,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     //custom keyboard 관련 변수
     Button btn[] = new Button[12];
     int cnt = 0;
+    int randnum[] = new int[10];
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -120,43 +122,58 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btn[10] = (Button)findViewById(R.id.btn11);
         btn[11] = (Button)findViewById(R.id.btn12);
 
+        Randnum();
+
+        btn[0].setText(Integer.toString(randnum[0]));
+        btn[1].setText(Integer.toString(randnum[1]));
+        btn[2].setText(Integer.toString(randnum[2]));
+        btn[3].setText(Integer.toString(randnum[3]));
+        btn[4].setText(Integer.toString(randnum[4]));
+        btn[5].setText(Integer.toString(randnum[5]));
+        btn[6].setText(Integer.toString(randnum[6]));
+        btn[7].setText(Integer.toString(randnum[7]));
+        btn[8].setText(Integer.toString(randnum[8]));
+        btn[10].setText(Integer.toString(randnum[9]));
+
         for(int i=0; i<12; i++) {
             btn[i].setOnClickListener(this);
         }
+
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn1:
-                addtoarray("1");
+                addtoarray(Integer.toString(randnum[0]));
                 break;
             case R.id.btn2:
-                addtoarray("2");
+                addtoarray(Integer.toString(randnum[1]));
                 break;
             case R.id.btn3:
-                addtoarray("3");
+                addtoarray(Integer.toString(randnum[2]));
                 break;
             case R.id.btn4:
-                addtoarray("4");
+                addtoarray(Integer.toString(randnum[3]));
                 break;
             case R.id.btn5:
-                addtoarray("5");
+                addtoarray(Integer.toString(randnum[4]));
                 break;
             case R.id.btn6:
-                addtoarray("6");
+                addtoarray(Integer.toString(randnum[5]));
                 break;
             case R.id.btn7:
-                addtoarray("7");
+                addtoarray(Integer.toString(randnum[6]));
                 break;
             case R.id.btn8:
-                addtoarray("8");
+                addtoarray(Integer.toString(randnum[7]));
                 break;
             case R.id.btn9:
-                addtoarray("9");
+                addtoarray(Integer.toString(randnum[8]));
                 break;
             case R.id.btn11:
-                addtoarray("0");
+                addtoarray(Integer.toString(randnum[9]));
                 break;
             case R.id.btn12:
                 backarray();
@@ -179,6 +196,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         cnt++;
     }
 
+    //del 키 알고리즘
     public void backarray() {
         if(cnt==0) {
 
@@ -191,6 +209,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else if(cnt==3) {
             cnt--;
             edit3.setText(null);
+        }
+    }
+
+    //랜덤 수 생성
+    public void Randnum(){
+        Random r = new Random();
+        for(int i=0; i<10; i++) {
+            randnum[i] = r.nextInt(10);
+            for(int j=0;j<i;j++) {
+                if(randnum[i]==randnum[j]) i--;
+            }
         }
     }
 }
