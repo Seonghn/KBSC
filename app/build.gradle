@@ -47,4 +47,7 @@ dependencies {
 
     //slide view를 위한 dependency
     implementation 'me.relex:circleindicator:1.2.2'
+
+    //CurveGraphView를 위한 dependency
+    implementation 'com.github.swapnil1104:CurveGraphView:2.1'
 }

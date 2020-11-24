@@ -43,7 +43,7 @@ public class ConsumeGradeFragment extends Fragment {
     }
     public static class MyPagerAdapter extends FragmentPagerAdapter {
         //fragment 개수 설정 변수
-        private static int NUM_ITEMS = 3;
+        private static int NUM_ITEMS = 4;
 
         //page어댑터 설정
         public MyPagerAdapter(FragmentManager fragmentManager) {
@@ -60,6 +60,8 @@ public class ConsumeGradeFragment extends Fragment {
                     return new ConsumeGrade2Fragment();
                 case 2:
                     return new ConsumeGrade3Fragment();
+                case 3:
+                    return new ConsumeGrade4Fragment();
                 default:
                     return null;
             }

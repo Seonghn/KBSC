@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="N 등급 "
+            android:text="2 등급 "
             android:fontFamily="@font/jalnan"
             android:textSize="25dp"/>
         <TextView
@@ -33,7 +33,7 @@
     <!-- 경계선 -->
     <View
         android:layout_width="wrap_content"
-        android:layout_height="0.3dp"
+        android:layout_height="0.5dp"
         android:background="#F4A460"/>
 
     <androidx.viewpager.widget.ViewPager

@@ -18,7 +18,8 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        //CurveGraphView를 위한 maven
+        maven { url "https://jitpack.io" }
     }
 }
 
