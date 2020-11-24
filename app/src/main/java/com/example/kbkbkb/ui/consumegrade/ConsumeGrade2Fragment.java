@@ -52,7 +52,7 @@ public class ConsumeGrade2Fragment extends Fragment {
         Cursor c;
 
         openDatabase();
-        c = database.rawQuery("select * from user", null);
+        //c = database.rawQuery("select * from user", null);
 
         return view;
     }
@@ -101,7 +101,7 @@ public class ConsumeGrade2Fragment extends Fragment {
             bufferStr.close();
             inputStr.close();
         } catch (IOException e) {
-            Log.e("Error : ", e.getMessage());
+            Log.e("Copy Error : ", e.getMessage());
         }
     }
     public void openDatabase() {
