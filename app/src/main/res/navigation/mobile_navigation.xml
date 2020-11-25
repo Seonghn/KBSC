@@ -25,9 +25,9 @@
 
     <fragment
         android:id="@+id/nav_tools"
-        android:name="com.example.kbkbkb.ui.tools.ToolsFragment"
+        android:name="com.example.kbkbkb.ui.tools.GoalFragment"
         android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        tools:layout="@layout/fragment_goal2" />
 
     <fragment
         android:id="@+id/nav_share"

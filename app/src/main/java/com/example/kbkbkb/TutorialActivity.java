@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,9 +16,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.kbkbkb.tutorial_fragment.FirstFragment;
 import com.example.kbkbkb.tutorial_fragment.SecondFragment;
 import com.example.kbkbkb.tutorial_fragment.ThirdFragment;
-import com.example.kbkbkb.ui.consumegrade.ConsumeGrade1Fragment;
-import com.example.kbkbkb.ui.consumegrade.ConsumeGrade2Fragment;
-import com.example.kbkbkb.ui.consumegrade.ConsumeGrade3Fragment;
 
 import me.relex.circleindicator.CircleIndicator;
 
@@ -53,6 +51,15 @@ public class TutorialActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
             }
         });
+
+        ImageButton jump = findViewById(R.id.jump);
+        jump.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
+
     }
 
     public static class MyPagerAdapter extends FragmentPagerAdapter {

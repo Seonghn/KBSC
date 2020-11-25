@@ -1,4 +1,4 @@
-package com.example.kbkbkb.ui.consumegrade;
+package com.example.kbkbkb.ui.tools;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.kbkbkb.R;
 
-public class ConsumeGrade1Fragment extends Fragment {
+public class GoalFragment3 extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -21,8 +21,7 @@ public class ConsumeGrade1Fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_consume1, container, false);//fragment layout 연결
-
+        View view = inflater.inflate(R.layout.fragment_goal3, container, false);//fragment layout 연결
 
         return view;
     }

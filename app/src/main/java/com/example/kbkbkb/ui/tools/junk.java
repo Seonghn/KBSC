@@ -1,4 +1,4 @@
-package com.example.kbkbkb.ui.consumegrade;
+package com.example.kbkbkb.ui.tools;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,7 +39,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class ConsumeGrade2Fragment extends Fragment {
+public class junk extends Fragment {
 
     //그래프 그리기 위한 변수
     private SQLiteDatabase database;
@@ -52,9 +51,7 @@ public class ConsumeGrade2Fragment extends Fragment {
 
     //SharedPreference 변수
     private PreferenceManager consume_sp;
-    private CheckBox account_cb;
-    private String sp_ackey = "ac_kbkbkb";
-    private String sp_btkey = "bt_kbkbkb";
+
 
     //SharedPreference 클래스 정의
     public static class PreferenceManager {
@@ -116,13 +113,13 @@ public class ConsumeGrade2Fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_consume2, container, false);//fragment layout 연결
+        View view = inflater.inflate(R.layout.fragment_consume4, container, false);//fragment layout 연결
 
         boolean bResult = isCheckDatabase();    // DB가 있는지?
         if (!bResult) {  // DB가 없으면 복사
             //Log.d("check","database copy");
 
-             copyDataBase();
+            copyDataBase();
         }
 
         Cursor c;
@@ -134,7 +131,7 @@ public class ConsumeGrade2Fragment extends Fragment {
         //저장된 정보를 이용하여 db를 확인할건지 정함
         consume_sp.getPreferences(mContext);
 
-        if(consume_sp.getvalue(mContext,"value0") == 0) {//기본값이 0인데 0인 경우, 아직 db를 탐색하지 않은 것으로 봄
+        if(consume_sp.getvalue(mContext,"value40") == 0) {//기본값이 0인데 0인 경우, 아직 db를 탐색하지 않은 것으로 봄
             for (int i = 0; i < 928; i++) {
 
                 c.moveToNext();
@@ -145,16 +142,12 @@ public class ConsumeGrade2Fragment extends Fragment {
                 //돈 표시의 ,를 없앰
                 String p_money = money.replace(",", "");
 
-                //현재 날짜로 나눈 것이 아니기 때문에 수정 필요
-                int subdate = Integer.parseInt(date.substring(8, 10));
+                if (hm.containsKey(send))
+                    hm.put(send, hm.get(send) + Integer.parseInt(p_money));
+                else {
+                    hm.put(send, Integer.parseInt(p_money));
+                }
 
-                if (subdate >= 25 && subdate <= 31) {
-                    if (hm.containsKey(send))
-                        hm.put(send, hm.get(send) + Integer.parseInt(p_money));
-                    else {
-                        hm.put(send, Integer.parseInt(p_money));
-                    }
-                } else break;
             }
 
             Iterator it = sortByValue(hm).iterator();
@@ -169,12 +162,12 @@ public class ConsumeGrade2Fragment extends Fragment {
                 if (cnt >= 4) {
                     guitar += hm.get(t);
                 } else {
-                    consume_sp.setname(mContext,"name"+cnt, t);
-                    consume_sp.setvalue(mContext,"value"+cnt, hm.get(t));
+                    consume_sp.setname(mContext,"name4"+cnt, t);
+                    consume_sp.setvalue(mContext,"value4"+cnt, hm.get(t));
                     cnt++;
                 }
             }
-            consume_sp.setvalue(mContext,"value"+4,guitar);
+            consume_sp.setvalue(mContext,"value4"+4,guitar);
         }
 
         pieChart = (PieChart)view.findViewById(R.id.pie1);
@@ -209,13 +202,13 @@ public class ConsumeGrade2Fragment extends Fragment {
         }*/
 
         for(int i=0; i<4; i++) {
-            yValues.add(new PieEntry(consume_sp.getvalue(mContext,"value"+i),consume_sp.getname(mContext,"name"+i)));
+            yValues.add(new PieEntry(consume_sp.getvalue(mContext,"value4"+i),consume_sp.getname(mContext,"name4"+i)));
         }
 
-        yValues.add(new PieEntry(consume_sp.getvalue(mContext,"value"+4),"기타"));
+        yValues.add(new PieEntry(consume_sp.getvalue(mContext,"value4"+4),"기타"));
 
         Description description = new Description();
-        description.setText("이번주"); //라벨
+        description.setText("이번년도"); //라벨
         description.setTextSize(15);
         pieChart.setDescription(description);
 
@@ -284,11 +277,11 @@ public class ConsumeGrade2Fragment extends Fragment {
             bufferStr.close();
             inputStr.close();
         } catch (IOException e) {
-             e.printStackTrace();
+            e.printStackTrace();
         }
     }
     public void openDatabase() {
-        database = getActivity().openOrCreateDatabase("userinfo.db", android.content.Context.MODE_PRIVATE, null);
+        database = getActivity().openOrCreateDatabase("userinfo.db", Context.MODE_PRIVATE, null);
         if (database != null) {
             Log.e("check", "데이터베이스가 존재합니다.");
         }
