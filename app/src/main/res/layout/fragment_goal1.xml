@@ -96,6 +96,7 @@
         android:layout_height="40dp"
         android:orientation="horizontal">
         <EditText
+            android:id="@+id/tg_mon"
             android:maxLength="2"
             android:singleLine="true"
             android:hint="--"

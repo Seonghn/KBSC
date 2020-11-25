@@ -96,7 +96,7 @@
         <EditText
             android:maxLength="2"
             android:singleLine="true"
-            android:id="@+id/tg_mon"
+            android:id="@+id/tg_mon2"
             android:hint="--"
             android:inputType="numberDecimal"
             android:textSize="20dp"
