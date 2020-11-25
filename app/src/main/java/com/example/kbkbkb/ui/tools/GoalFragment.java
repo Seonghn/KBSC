@@ -18,14 +18,14 @@ public class GoalFragment extends Fragment {
 
     EditText whatmonth;
     FragmentPagerAdapter adapterViewPager;
-
+    public static ViewPager vpPager;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_goal, container, false);
 
-        final ViewPager vpPager = (ViewPager) root.findViewById(R.id.goal_vpPager);
+        vpPager = (ViewPager) root.findViewById(R.id.goal_vpPager);
         adapterViewPager = new GoalFragment.MyPagerAdapter(getFragmentManager());
         vpPager.setAdapter(adapterViewPager);
 

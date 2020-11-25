@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.kbkbkb.R;
+import com.example.kbkbkb.ui.consumegrade.ConsumeGradeFragment;
 import com.example.kbkbkb.ui.tools.GoalFragment;
 
 public class HomeFragment extends Fragment {
@@ -41,14 +42,14 @@ public class HomeFragment extends Fragment {
 //                fragmentTransaction.commit();
 //            }
 //        });
-//        con.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                fragmentTransaction.replace(R.id.nav_host_fragment, new ConsumeGradeFragment());
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commit();
-//            }
-//        });
+        con.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentTransaction.replace(R.id.nav_host_fragment, new ConsumeGradeFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
         what.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
