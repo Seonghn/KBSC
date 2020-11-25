@@ -32,7 +32,7 @@ public class GoalFragment1 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_goal1, container, false);//fragment layout 연결
 
 
-        ImageButton select = view.findViewById(R.id.select);
+        ImageButton select = view.findViewById(R.id.select1);
         select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
