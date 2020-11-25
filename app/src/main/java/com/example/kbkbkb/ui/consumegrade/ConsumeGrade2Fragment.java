@@ -4,13 +4,11 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,7 +24,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class ConsumeGrade2Fragment extends Fragment {
+public abstract class ConsumeGrade2Fragment extends Fragment{
 
     //그래프 그리기 위한 변수
     private SQLiteDatabase database;
@@ -56,6 +54,7 @@ public class ConsumeGrade2Fragment extends Fragment {
 
         return view;
     }
+
     public boolean isCheckDatabase() {
         String filePath = "/data/data/com.example.kbkbkb" + "/databases/" + "userinfo.db";
         File file = new File(filePath);
@@ -110,4 +109,8 @@ public class ConsumeGrade2Fragment extends Fragment {
             Log.e("check", "데이터베이스가 존재합니다.");
         }
     }
+
+    public abstract void onCreate(SQLiteDatabase db);
+
+    public abstract void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion);
 }
