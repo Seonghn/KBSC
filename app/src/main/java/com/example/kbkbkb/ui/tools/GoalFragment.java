@@ -61,6 +61,7 @@ public class GoalFragment extends Fragment {
         });
         return root;
     }
+
     public interface CustomDialogClickListener {
         void onPositiveClick();
         void onNegativeClick();
@@ -132,6 +133,4 @@ public class GoalFragment extends Fragment {
             return NUM_ITEMS;
         }
     }
-
-
 }
