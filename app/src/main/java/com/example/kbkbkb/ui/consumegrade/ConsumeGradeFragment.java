@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
@@ -20,7 +21,7 @@ import me.relex.circleindicator.CircleIndicator;
 public class ConsumeGradeFragment extends Fragment {
 
     private ConsumeGradeViewModel consumeGradeViewModel;
-    FragmentPagerAdapter adapterViewPager;
+    FragmentStatePagerAdapter adapterViewPager;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -39,30 +40,11 @@ public class ConsumeGradeFragment extends Fragment {
         CircleIndicator indicator = (CircleIndicator)root.findViewById(R.id.consume_indicator);
         indicator.setViewPager(vpPager);
 
-        Log.e("cf","cf_oncreateview");
-
         return root;
     }
 
-    @Override
-    public void onStop() {
-        Log.e("cf","cf_onstop");
-        super.onStop();
-    }
 
-    @Override
-    public void onPause() {
-        Log.e("cf","cf_onpause");
-        super.onPause();
-    }
-
-    @Override
-    public void onDestroyView() {
-        Log.e("cf","cf_ondestroyview");
-        super.onDestroyView();
-    }
-
-    public static class MyPagerAdapter extends FragmentPagerAdapter {
+    public static class MyPagerAdapter extends FragmentStatePagerAdapter {
         //fragment 개수 설정 변수
         private static int NUM_ITEMS = 4;
 
@@ -74,7 +56,6 @@ public class ConsumeGradeFragment extends Fragment {
         //page마다 어떤 프래그먼트가 들어가는지
         @Override
         public Fragment getItem(int position) {
-            Log.e("getitem","in the getitem");
             switch(position) {
                 case 0:
                     return new ConsumeGrade1Fragment();
