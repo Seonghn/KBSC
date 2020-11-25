@@ -235,6 +235,13 @@ public class ConsumeGrade3Fragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onPause() {
+        Log.d("pause","onpause");
+        super.onPause();
+    }
+
     public boolean isCheckDatabase() {
         String filePath = "/data/data/com.example.kbkbkb" + "/databases/" + "userinfo.db";
         File file = new File(filePath);

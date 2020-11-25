@@ -1,6 +1,7 @@
 package com.example.kbkbkb.ui.consumegrade;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
@@ -19,7 +21,7 @@ import me.relex.circleindicator.CircleIndicator;
 public class ConsumeGradeFragment extends Fragment {
 
     private ConsumeGradeViewModel consumeGradeViewModel;
-    FragmentPagerAdapter adapterViewPager;
+    FragmentStatePagerAdapter adapterViewPager;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -38,10 +40,11 @@ public class ConsumeGradeFragment extends Fragment {
         CircleIndicator indicator = (CircleIndicator)root.findViewById(R.id.consume_indicator);
         indicator.setViewPager(vpPager);
 
-
         return root;
     }
-    public static class MyPagerAdapter extends FragmentPagerAdapter {
+
+
+    public static class MyPagerAdapter extends FragmentStatePagerAdapter {
         //fragment 개수 설정 변수
         private static int NUM_ITEMS = 4;
 
