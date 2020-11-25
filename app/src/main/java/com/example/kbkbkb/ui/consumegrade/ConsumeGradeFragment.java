@@ -1,6 +1,7 @@
 package com.example.kbkbkb.ui.consumegrade;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,9 +39,29 @@ public class ConsumeGradeFragment extends Fragment {
         CircleIndicator indicator = (CircleIndicator)root.findViewById(R.id.consume_indicator);
         indicator.setViewPager(vpPager);
 
+        Log.e("cf","cf_oncreateview");
 
         return root;
     }
+
+    @Override
+    public void onStop() {
+        Log.e("cf","cf_onstop");
+        super.onStop();
+    }
+
+    @Override
+    public void onPause() {
+        Log.e("cf","cf_onpause");
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroyView() {
+        Log.e("cf","cf_ondestroyview");
+        super.onDestroyView();
+    }
+
     public static class MyPagerAdapter extends FragmentPagerAdapter {
         //fragment 개수 설정 변수
         private static int NUM_ITEMS = 4;
@@ -53,6 +74,7 @@ public class ConsumeGradeFragment extends Fragment {
         //page마다 어떤 프래그먼트가 들어가는지
         @Override
         public Fragment getItem(int position) {
+            Log.e("getitem","in the getitem");
             switch(position) {
                 case 0:
                     return new ConsumeGrade1Fragment();

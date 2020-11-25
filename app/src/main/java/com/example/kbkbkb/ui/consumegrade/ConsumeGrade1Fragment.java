@@ -1,6 +1,7 @@
 package com.example.kbkbkb.ui.consumegrade;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ public class ConsumeGrade1Fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_consume1, container, false);//fragment layout 연결
 
+        Log.e("consumefragment1","cf1_oncreateview");
         return view;
     }
 }
