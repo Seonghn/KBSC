@@ -41,8 +41,8 @@ public class ServerCommunicationFragment extends Fragment {
     private AppBarConfiguration mAppBarConfiguration;
 
     //서버 관련 변수
-    private String serverip = "220.149.236.41";
-    private int serverport = 8506;
+    private String serverip = "220.149.236.154";
+    private int serverport = 8508;
     private Socket client;
     private DataOutputStream dataOutputStream;
     private DataInputStream dataInputStream;
