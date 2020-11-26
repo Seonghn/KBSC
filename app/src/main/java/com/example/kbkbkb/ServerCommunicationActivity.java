@@ -143,6 +143,7 @@ public class ServerCommunicationActivity extends AppCompatActivity {
                     input_message = new String(buf, 0, read_Byte);
                     if (!input_message.equals("stop")) {
                         publishProgress(input_message);
+                        Log.d("ck", input_message);
                     } else {
                         break;
                     }
