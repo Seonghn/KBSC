@@ -6,7 +6,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -15,7 +17,92 @@
             android:textSize="15dp"
             android:gravity="right"
             android:layout_marginTop="20dp"
-            />
+            android:layout_marginRight="10dp"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="금주 소비 : 234,589원"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="(단위: 천원)"
+            android:textSize="9dp"
+            android:gravity="right"
+            android:layout_marginBottom="10dp"/>
+
+        <com.broooapps.graphview.CurveGraphView
+            android:id="@+id/cgv1"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="이번주 잔고 : 15,768원 "
+            android:textSize="15dp"
+            android:gravity="center"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="(단위: 천원)"
+            android:textSize="9dp"
+            android:gravity="right"
+            android:layout_marginBottom="10dp"/>
+
+        <com.broooapps.graphview.CurveGraphView
+            android:id="@+id/cgv2"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="이대로 사용하면,\n 예측 잔고는 16,559원"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="(단위: 천원)"
+            android:textSize="9dp"
+            android:gravity="right"
+            android:layout_marginBottom="10dp"/>
+
+        <com.broooapps.graphview.CurveGraphView
+            android:id="@+id/cgv3"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="이번주보다 20%아낀다면,\n 예측 잔고는 6,309원"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="(단위: 천원)"
+            android:textSize="9dp"
+            android:gravity="right"
+            android:layout_marginBottom="10dp"/>
+
+        <com.broooapps.graphview.CurveGraphView
+            android:id="@+id/cgv4"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"/>
 
     </LinearLayout>
 </ScrollView>

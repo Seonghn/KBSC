@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.kbkbkb.R;
 import com.example.kbkbkb.ui.consumegrade.ConsumeGradeFragment;
+import com.example.kbkbkb.ui.share.ShareFragment;
 import com.example.kbkbkb.ui.tools.GoalFragment;
 
 public class HomeFragment extends Fragment {
@@ -30,9 +31,9 @@ public class HomeFragment extends Fragment {
         FragmentManager fm = getFragmentManager();
         final FragmentTransaction fragmentTransaction = fm.beginTransaction();
 
-        acc = root.findViewById(R.id.acc_predict);
-        con = root.findViewById(R.id.con_predict);
-        what = root.findViewById(R.id.what_predict);
+        acc = root.findViewById(R.id.btn_predict);
+        con = root.findViewById(R.id.btn_consumegrade);
+        what = root.findViewById(R.id.btn_consumegoal);
 
 //        acc.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -42,6 +43,15 @@ public class HomeFragment extends Fragment {
 //                fragmentTransaction.commit();
 //            }
 //        });
+        acc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentTransaction.replace(R.id.nav_host_fragment, new ShareFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+        
         con.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +60,7 @@ public class HomeFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+
         what.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

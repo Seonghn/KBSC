@@ -16,12 +16,12 @@
 
             <Button
                 android:layout_width="0dp"
-                android:id="@+id/acc_predict"
+                android:id="@+id/btn_consumegrade"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"/>
             <Button
-                android:id="@+id/con_predict"
+                android:id="@+id/btn_predict"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -39,7 +39,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="100dp"
             android:layout_marginRight="105dp"
-            android:text="잔고 예측"/>
+            android:text="소비 등급"/>
         <ImageView
             android:layout_marginLeft="105dp"
             android:layout_width="150dp"
@@ -52,7 +52,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="100dp"
             android:layout_marginLeft="105dp"
-            android:text="소비 등급"/>
+            android:text="잔고 예측"/>
     </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <Button
-                android:id="@+id/what_predict"
+                android:id="@+id/btn_consumegoal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"/>
@@ -76,6 +76,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="100dp"
-            android:text="what?"/>
+            android:text="소비 목표"/>
     </FrameLayout>
 </LinearLayout>
