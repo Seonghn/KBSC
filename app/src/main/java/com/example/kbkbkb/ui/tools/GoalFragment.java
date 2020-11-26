@@ -48,6 +48,13 @@ public class GoalFragment extends Fragment {
 
     private static int NUM_ITEMS = 1;
 
+    //Fragment에서 Activity의 context를 가져오는 부분
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        cont = context;
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -65,10 +72,10 @@ public class GoalFragment extends Fragment {
 //        indicator.setViewPager(vpPager);
         ImageButton add = root.findViewById(R.id.add);
 
-//        t1 = root.findViewById(R.id.r1);
-//        t2 = root.findViewById(R.id.r2);
-//        t3 = root.findViewById(R.id.r3);
-//        t4 = root.findViewById(R.id.r4);
+        t1 = root.findViewById(R.id.r1);
+        t2 = root.findViewById(R.id.r2);
+        t3 = root.findViewById(R.id.r3);
+        t4 = root.findViewById(R.id.r4);
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -221,6 +228,7 @@ public class GoalFragment extends Fragment {
                     int read_Byte = dataInputStream.read(buf);
                     input_message = new String(buf, 0, read_Byte);
                     if (!input_message.equals("stop")) {
+                        Log.e("test","들어갔나요?");
                         publishProgress(input_message);
                         String[] res = input_message.split("/");
 
@@ -317,21 +325,21 @@ public class GoalFragment extends Fragment {
         // 소비 금액 출력
         public static String getCost(Context context, String key) {
             SharedPreferences preferences = getPreferences(context);
-            String value = preferences.getString(key,"");
+            String value = preferences.getString(key," ");
             return value;
         }
 
         //비율 출력
         public static String getRatio(Context context, String key) {
             SharedPreferences preferences = getPreferences(context);
-            String value = preferences.getString(key,"");
+            String value = preferences.getString(key," ");
             return value;
         }
 
         //1번결과 출력
         public static String getR1(Context context, String key) {
             SharedPreferences preferences = getPreferences(context);
-            String value = preferences.getString(key,"");
+            String value = preferences.getString(key," ");
             return value;
         }
 
