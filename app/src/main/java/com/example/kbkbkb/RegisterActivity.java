@@ -1,5 +1,6 @@
 package com.example.kbkbkb;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.bumptech.glide.Glide;
 
@@ -38,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Socket client;
     private DataOutputStream dataOutputStream;
     private DataInputStream dataInputStream;
+    private Connect connect = null;
 
     //알림창 출력 변수
     private AlertDialog dig;
@@ -59,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
             editor.putString(key,value); //키 값에 맞추어 String 값 삽입
             editor.commit();
         }
+
 
         //저장된 계좌 정보 출력
         public static String getPassword(Context context, String key) {
@@ -89,8 +93,6 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acc_register);
 
-        acc_num = findViewById(R.id.acc_num);
-        bir_num = findViewById(R.id.bir_num);
         edit1 = (EditText) findViewById(R.id.pin1);
         edit2 = (EditText) findViewById(R.id.pin2);
         edit3 = (EditText) findViewById(R.id.pin3);
@@ -186,10 +188,14 @@ public class RegisterActivity extends AppCompatActivity {
 
                     //progress bar 실행
                     dig.show();
-
+                    
                     //서버 통신
-                    Connect connect = new Connect();
-                    connect.execute(send_text); //edittext에서 입력한 값을 전달
+                    if(connect==null)
+                        connect = new Connect();
+                    Log.e("connect check","연결되어 데이터를 보냅니다. : "+send_text);
+                    connect.execute(send_text);
+                } else {
+                    Log.e("edit4의 길이",Integer.toString(edit4.length()));
                 }
             }
             @Override
@@ -208,10 +214,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         //바탕 투명하게 설정
         dig.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
         dig.setView(customView);
     }
-
 
     private class Connect extends AsyncTask<String,String,Void> {
         private String output_message;
@@ -225,7 +229,9 @@ public class RegisterActivity extends AppCompatActivity {
                 dataInputStream = new DataInputStream(client.getInputStream()); //서버에게 정보를 받기 위한 변수
                 output_message = strings[0];
                 dataOutputStream.writeUTF(output_message);
+                Log.e("Connect Success","연결 성공");
             } catch (Exception e) {
+                Log.e("Connect Loss","연결 실패");
                 e.printStackTrace();
             }
             while(true) { //서버에게 입력받음
@@ -245,7 +251,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } //catch (InterruptedException e) {
                 //}
             }
-
+            Log.e("input return","입력 다 받아 return");
             return null;
         }
 
@@ -255,13 +261,24 @@ public class RegisterActivity extends AppCompatActivity {
             Log.e("CSOS",params[0]); //params[0]이 받은 값
 
             if(params[0].equals("t")) { //실패한 경우
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 Toast.makeText(getApplicationContext(),"없는 정보입니다.\n 다시 작성해주세요.",Toast.LENGTH_LONG).show();
-                dig.dismiss();
+                try {
+                    client.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 finish();
                 startActivity(new Intent(RegisterActivity.this, RegisterActivity.class));
+                dig.dismiss();
             } else {  //성공한 경우
                 register_sp.setPassword(getApplicationContext(),"password",edit1.getText().toString()+edit2.getText().toString()+edit3.getText().toString()+edit4.getText().toString());
                 Toast.makeText(getApplicationContext(),"가입에 성공했습니다.\n 핀번호로 로그인해주세요.",Toast.LENGTH_LONG).show();
+                finish();
                 dig.dismiss();
                 startActivity(new Intent(getApplicationContext(), TutorialActivity.class));
             }
