@@ -2,6 +2,7 @@ package com.example.kbkbkb;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +26,48 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button btn[] = new Button[12];
     int cnt = 0;
     int randnum[] = new int[10];
+
+    //회원가입 sp
+    private PreferenceManager login_sp;
+
+    //sp 정보 가져와서 확인
+    public static class PreferenceManager {
+
+        private static SharedPreferences getPreferences(Context context) {
+            return context.getSharedPreferences("preference", context.MODE_PRIVATE);
+        }
+
+        //계좌 정보 저장
+        public static void setPassword(Context context, String key, String value) {
+            SharedPreferences preferences = getPreferences(context); //context끼리 각각의 sharedPreference를 저장하고 있다.
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(key, value); //키 값에 맞추어 String 값 삽입
+            editor.commit();
+        }
+
+        //저장된 계좌 정보 출력
+        public static String getPassword(Context context, String key) {
+            SharedPreferences preferences = getPreferences(context);
+            String value = preferences.getString(key, "");
+            return value;
+        }
+
+        //키 삭제
+        public static void removeKey(Context context, String key) {
+            SharedPreferences preferences = getPreferences(context);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.remove(key);
+            editor.commit();
+        }
+
+        //전체 삭제
+        public static void clear(Context context) {
+            SharedPreferences preferences = getPreferences(context);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.clear();
+            editor.commit();
+        }
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,7 +139,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
              @Override
              public void onTextChanged(CharSequence s, int start, int before, int count) {
                  if (edit4.length() == 1) {  // edit1  값의 제한값을 6이라고 가정했을때
-                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+                     if(login_sp.getPassword(getApplicationContext(),"password").equals(edit1.getText().toString()+edit2.getText().toString()+edit3.getText().toString()+edit4.getText().toString())) {//로그인 성공
+                         Toast.makeText(getApplicationContext(),"로그인 성공",Toast.LENGTH_LONG).show();
+                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                     } else {
+                         edit1.setText(null);
+                         edit2.setText(null);
+                         edit3.setText(null);
+                         edit4.setText(null);
+                         edit1.requestFocus(); //다시 처음으로 돌림
+                         Toast.makeText(getApplicationContext(),"다시 로그인해주세요",Toast.LENGTH_SHORT).show();
+                     }
                  }
              }
 
@@ -138,8 +193,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         for(int i=0; i<12; i++) {
             btn[i].setOnClickListener(this);
         }
-
-
     }
 
     @Override

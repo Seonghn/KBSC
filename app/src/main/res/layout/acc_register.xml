@@ -22,7 +22,8 @@
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp">
 
                 <!--국민은행 기준 계좌번호 길이 14 -->
         <TextView
@@ -134,5 +135,4 @@
         </LinearLayout>
 
     </LinearLayout>
-
 </LinearLayout>
