@@ -9,10 +9,6 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_sever_com"
-            android:icon="@drawable/ic_account_list"
-            android:title="@string/menu_custom" />
-        <item
             android:id="@+id/nav_consumegrade"
             android:icon="@drawable/ic_baseline_grade_24"
             android:title="소비 등급" />
@@ -20,14 +16,18 @@
             android:id="@+id/nav_tools"
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/menu_tools" />
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_predict_24"
+            android:title="잔고 예측" />
     </group>
 
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/menu_share" />
+                android:id="@+id/nav_sever_com"
+                android:icon="@drawable/ic_account_list"
+                android:title="@string/menu_custom" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"

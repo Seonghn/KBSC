@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_sever_com"
-        android:name="com.example.kbkbkb.ui.serverCom.ServerCommunicationFragment"
-        android:label="@string/menu_custom"
-        tools:layout="@layout/fragment_servercom" />
+        android:id="@+id/nav_share"
+        android:name="com.example.kbkbkb.ui.share.ShareFragment"
+        android:label="@string/menu_share"
+        tools:layout="@layout/fragment_share" />
 
     <fragment
         android:id="@+id/nav_consumegrade"
@@ -30,14 +30,15 @@
         tools:layout="@layout/fragment_goal2" />
 
     <fragment
-        android:id="@+id/nav_share"
-        android:name="com.example.kbkbkb.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
+        android:id="@+id/nav_sever_com"
+        android:name="com.example.kbkbkb.ui.serverCom.ServerCommunicationFragment"
+        android:label="@string/menu_custom"
+        tools:layout="@layout/fragment_servercom" />
 
     <fragment
         android:id="@+id/nav_send"
         android:name="com.example.kbkbkb.ui.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
+
 </navigation>
