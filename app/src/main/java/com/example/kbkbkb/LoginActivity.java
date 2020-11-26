@@ -148,7 +148,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                          edit2.setText(null);
                          edit3.setText(null);
                          edit4.setText(null);
-                         edit1.requestFocus(); //다시 처음으로 돌림
+                         cnt=-1;
+                         //edit1.requestFocus(); //다시 처음으로 돌림
                          Toast.makeText(getApplicationContext(),"다시 로그인해주세요",Toast.LENGTH_SHORT).show();
                      }
                  }
