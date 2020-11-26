@@ -13,7 +13,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -43,7 +42,6 @@ public class GoalFragment extends Fragment {
     private DataInputStream dataInputStream;
 
     String Page="0";
-    TextView t1,t2,t3,t4;
     private Context cont;
 
     private static int NUM_ITEMS = 1;
@@ -60,7 +58,7 @@ public class GoalFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_goal, container, false);
-
+        NUM_ITEMS = account_sp.getPN(cont, "PN");
         vpPager = (ViewPager) root.findViewById(R.id.goal_vpPager);
         adapterViewPager = new GoalFragment.MyPagerAdapter(getFragmentManager());
         vpPager.setAdapter(adapterViewPager);
@@ -72,24 +70,21 @@ public class GoalFragment extends Fragment {
 //        indicator.setViewPager(vpPager);
         ImageButton add = root.findViewById(R.id.add);
 
-        t1 = root.findViewById(R.id.r1);
-        t2 = root.findViewById(R.id.r2);
-        t3 = root.findViewById(R.id.r3);
-        t4 = root.findViewById(R.id.r4);
-
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 OptionCodeTypeDialog octDialog  = new OptionCodeTypeDialog(getContext(), new CustomDialogClickListener() {
                     @Override
                     public void onPositiveClick() {
-                        NUM_ITEMS++;
-                        adapterViewPager = new GoalFragment.MyPagerAdapter(getFragmentManager());
-                        vpPager.setAdapter(adapterViewPager);
-                        t1.setText(account_sp.getCost(cont, Page+"1"));
-                        t2.setText(account_sp.getRatio(cont, Page+"2"));
-                        t3.setText(account_sp.getR1(cont, Page+"3"));
-                        t4.setText(account_sp.getR2(cont, Page+"4"));
+                        if(NUM_ITEMS<3) {
+                            NUM_ITEMS++;
+                            account_sp.setPN(cont, "PN", NUM_ITEMS);
+                            adapterViewPager = new GoalFragment.MyPagerAdapter(getFragmentManager());
+                            vpPager.setAdapter(adapterViewPager);
+                        } else{
+                            adapterViewPager = new GoalFragment.MyPagerAdapter(getFragmentManager());
+                            vpPager.setAdapter(adapterViewPager);
+                        }
                     }
                     @Override
                     public void onNegativeClick() {
@@ -114,7 +109,7 @@ public class GoalFragment extends Fragment {
 
         private Context context;
         private CustomDialogClickListener customDialogClickListener;
-        private EditText e1,e2,e3;
+        private EditText e1,e2,e3,e5;
         private Button p1,p2,p3;
 
         public OptionCodeTypeDialog(@NonNull Context context, CustomDialogClickListener customDialogClickListener) {
@@ -122,7 +117,6 @@ public class GoalFragment extends Fragment {
             this.context = context;
             this.customDialogClickListener = customDialogClickListener;
         }
-
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -144,40 +138,38 @@ public class GoalFragment extends Fragment {
             p2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(NUM_ITEMS==2){
-                        p1.setSelected(false);
-                        p2.setSelected(true);
-                        p3.setSelected(false);
-                        Page = "b";
-                    } else{
-                        Toast.makeText(getContext(), "1페이지가 비었습니다.", Toast.LENGTH_LONG).show();
-                    }
+//                    if(NUM_ITEMS==1){
+                    p1.setSelected(false);
+                    p2.setSelected(true);
+                    p3.setSelected(false);
+                    Page = "b";
+//                    } else{
+//                        Toast.makeText(getContext(), "1페이지가 비었습니다.", Toast.LENGTH_LONG).show();
+//                    }
                 }
             });
             p3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(NUM_ITEMS==3) {
-                        p1.setSelected(false);
-                        p2.setSelected(false);
-                        p3.setSelected(true);
-                        Page = "c";
-                    } else {
-                        Toast.makeText(getContext(), "2페이지가 비었습니다.", Toast.LENGTH_LONG).show();
-                    }
+                    p1.setSelected(false);
+                    p2.setSelected(false);
+                    p3.setSelected(true);
+                    Page = "c";
+//                        Toast.makeText(getContext(), "2페이지가 비었습니다.", Toast.LENGTH_LONG).show();
                 }
             });
 
             e1 = findViewById(R.id.e1);
             e2 = findViewById(R.id.e2);
             e3 = findViewById(R.id.e3);
+            e5 = findViewById(R.id.e5);
 
             Button yes = findViewById(R.id.yes);
             yes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     customDialogClickListener.onPositiveClick();
-                    if (e1.getText().toString().length() == 0 || e2.getText().toString().length() == 0 || e3.getText().toString().length() == 0) {
+                    if (e1.getText().toString().length() == 0 || e2.getText().toString().length() == 0 || e3.getText().toString().length() == 0 || e5.getText().toString().length() == 0) {
                         //만약 edittext가 어느 곳이든 빈 곳이라면
                         Toast.makeText(getContext(), "빈칸 없이 입력해주세요.", Toast.LENGTH_LONG).show();
                     } else{
@@ -186,9 +178,11 @@ public class GoalFragment extends Fragment {
                         } else{
                             Log.d("ch","df");
                             String send_text = e1.getText().toString()+"/"+e2.getText().toString()+"/"+e3.getText().toString();
+                            account_sp.setTarget(cont, Page+"5", e3.getText().toString()+"/"+e5.getText().toString());
                             e1.setText("");
                             e2.setText("");
                             e3.setText("");
+                            e5.setText("");
                             Connect connect = new Connect();
                             connect.execute(send_text); //edittext에서 입력한 값을 전달
                             dismiss();
@@ -219,6 +213,7 @@ public class GoalFragment extends Fragment {
                 dataInputStream = new DataInputStream(client.getInputStream()); //서버에게 정보를 받기 위한 변수
                 output_message = strings[0];
                 dataOutputStream.writeUTF(output_message);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -228,8 +223,8 @@ public class GoalFragment extends Fragment {
                     int read_Byte = dataInputStream.read(buf);
                     input_message = new String(buf, 0, read_Byte);
                     if (!input_message.equals("stop")) {
-                        Log.e("test","들어갔나요?");
                         publishProgress(input_message);
+                        Log.e("test",input_message);
                         String[] res = input_message.split("/");
 
                         account_sp.getPreferences(cont);
@@ -241,14 +236,15 @@ public class GoalFragment extends Fragment {
                     } else {
                         break;
                     }
+
                     //Thread.sleep(1); //thread sleep을 빼면 중간에 한글 깨짐이 발생하였음 - 아마도 한번 thread의 쉬는 시간을 줘야 한글이 안깨지나봄.
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (java.lang.StringIndexOutOfBoundsException e) {
                 } //catch (InterruptedException e) {
                 //}
-            }
 
+            }
             return null;
         }
     }
@@ -358,7 +354,34 @@ public class GoalFragment extends Fragment {
             editor.remove(key);
             editor.commit();
         }
+        //2번결과
+        public static void setPN(Context context, String key, Integer value) {
+            SharedPreferences preferences = getPreferences(context);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt(key,value);
+            editor.commit();
+        }
 
+        // 소비 금액 출력
+        public static Integer getPN(Context context, String key) {
+            SharedPreferences preferences = getPreferences(context);
+            Integer value = preferences.getInt(key,1);
+            return value;
+        } //2번결과
+
+        public static void setTarget(Context context, String key, String value) {
+            SharedPreferences preferences = getPreferences(context);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(key,value);
+            editor.commit();
+        }
+
+        // 소비 금액 출력
+        public static String getTarget(Context context, String key) {
+            SharedPreferences preferences = getPreferences(context);
+            String value = preferences.getString(key, "");
+            return value;
+        }
         //전체 삭제
         public static void clear(Context context) {
             SharedPreferences preferences = getPreferences(context);
