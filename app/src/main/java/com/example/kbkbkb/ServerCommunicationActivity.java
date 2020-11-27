@@ -30,7 +30,7 @@ public class ServerCommunicationActivity extends AppCompatActivity {
     private LinearLayout Lscreen;
 
     //서버 관련 변수
-    private String serverip = "220.149.236.154";
+    private String serverip = "220.149.236.41";
     private int serverport = 8508;
     private Socket client;
     private DataOutputStream dataOutputStream;
