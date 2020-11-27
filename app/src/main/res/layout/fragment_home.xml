@@ -28,31 +28,17 @@
                 android:background="@android:color/transparent"/>
         </LinearLayout>
         <ImageView
-            android:layout_marginRight="105dp"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_marginRight="130dp"
+            android:layout_width="210dp"
+            android:layout_height="270dp"
             android:layout_gravity="center"
-            android:background="@drawable/pig"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="100dp"
-            android:layout_marginRight="105dp"
-            android:text="소비 등급"/>
+            android:background="@drawable/s1"/>
         <ImageView
-            android:layout_marginLeft="105dp"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_marginLeft="130dp"
+            android:layout_width="230dp"
+            android:layout_height="250dp"
             android:layout_gravity="center"
-            android:background="@drawable/rank"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="105dp"
-            android:text="잔고 예측"/>
+            android:background="@drawable/s2"/>
     </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"
@@ -67,15 +53,9 @@
                 android:background="@android:color/transparent"/>
         </LinearLayout>
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="200dp"
+            android:layout_height="230dp"
             android:layout_gravity="center"
-            android:background="@drawable/goal"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="100dp"
-            android:text="소비 목표"/>
+            android:background="@drawable/s3"/>
     </FrameLayout>
 </LinearLayout>
