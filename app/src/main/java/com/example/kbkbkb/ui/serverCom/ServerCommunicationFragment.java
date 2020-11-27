@@ -329,8 +329,7 @@ public class ServerCommunicationFragment extends Fragment {
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (java.lang.StringIndexOutOfBoundsException e) {
-                } //catch (InterruptedException e) {
-                //}
+                }
             }
 
             return null;
