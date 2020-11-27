@@ -259,7 +259,7 @@ public class GoalFragment extends Fragment {
             String check = params[0].replace("'","");
             array = check.split("/");
 
-            adapterViewPager.addItem(new GoalFragmentView(e1.getText().toString(), array[0], array[1], "1."+array[2]+" "+array[3]+"원\n", "2."+array[4]+" "+array[5]+"원\n",
+            adapterViewPager.addItem(new GoalFragmentView(e5.getText().toString(), array[0], array[1], "1."+array[2]+" "+array[3]+"원\n", "2."+array[4]+" "+array[5]+"원\n",
                     "3."+array[6]+" "+array[7]+"원\n", "4."+array[8]+" "+array[9]+"원\n", "5."+array[10]+" "+array[11]+"원\n","1."+array[12]+" "+array[13]+"\n",
                     "2."+array[14]+" "+array[15]+"\n", "3."+array[16]+" "+array[17]+"\n", "4."+array[18]+" "+array[19]+"\n", "5."+array[20]+" "+array[21]+"\n"));
             vpPager.setAdapter(adapterViewPager);
