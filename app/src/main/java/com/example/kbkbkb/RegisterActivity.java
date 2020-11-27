@@ -1,6 +1,5 @@
 package com.example.kbkbkb;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +19,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.bumptech.glide.Glide;
 
@@ -35,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     LinearLayout linearLayout;
 
     //서버 관련 변수
-    private String serverip = "220.149.236.154";
+    private String serverip = "220.149.236.41";
     private int serverport = 8508;
     private Socket client;
     private DataOutputStream dataOutputStream;

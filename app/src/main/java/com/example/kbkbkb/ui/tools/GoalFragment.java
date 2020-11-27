@@ -36,7 +36,7 @@ public class GoalFragment extends Fragment {
     PreferenceManager account_sp;
     public static ViewPager vpPager;
     private String serverip = "220.149.236.41";
-    private int serverport = 8506;
+    private int serverport = 8508;
     private Socket client;
     private DataOutputStream dataOutputStream;
     private DataInputStream dataInputStream;
