@@ -68,20 +68,25 @@ public class GoalFragment extends Fragment {
 //        indicator.setViewPager(vpPager);
         ImageButton add = root.findViewById(R.id.add);
 
+        //목표 추가버튼
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OptionCodeTypeDialog octDialog  = new OptionCodeTypeDialog(getContext(), new CustomDialogClickListener() {
+                //알림창 띄움
+                OptionCodeTypeDialog octDialog  = new OptionCodeTypeDialog(cont, new CustomDialogClickListener() {
                     @Override
                     public void onPositiveClick() {
+                        //총 목표는 3개까지만
                         if(NUM_ITEMS<3) {
                             NUM_ITEMS++;
+                            //SharedPreference에 pn을 저장? -> Integer값
                             account_sp.setPN(cont, "PN", NUM_ITEMS);
+                            //수정된 목표 개수로 ViewPager설정
                             adapterViewPager = new GoalFragment.MyPagerAdapter(getFragmentManager());
                             vpPager.setAdapter(adapterViewPager);
                         } else{
-                            adapterViewPager = new GoalFragment.MyPagerAdapter(getFragmentManager());
-                            vpPager.setAdapter(adapterViewPager);
+//                            adapterViewPager = new GoalFragment.MyPagerAdapter(getFragmentManager());
+//                            vpPager.setAdapter(adapterViewPager);
                         }
                     }
                     @Override
@@ -103,7 +108,7 @@ public class GoalFragment extends Fragment {
         void onNegativeClick();
     }
 
-    public class OptionCodeTypeDialog extends Dialog {
+    public class OptionCodeTypeDialog extends Dialog { //알림창 설명
 
         private Context context;
         private CustomDialogClickListener customDialogClickListener;

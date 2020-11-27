@@ -18,15 +18,11 @@
             android:id="@+id/add"/>
     </LinearLayout>
 
-    <ScrollView
+    <androidx.viewpager.widget.ViewPager
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/goal_vpPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <androidx.viewpager.widget.ViewPager
-            android:layout_marginTop="40dp"
-            android:id="@+id/goal_vpPager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="7"/>
-    </ScrollView>
-
+        android:layout_height="wrap_content"
+        android:layout_weight="7"/>
 </LinearLayout>
