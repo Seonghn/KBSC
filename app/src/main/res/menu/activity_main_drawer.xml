@@ -6,7 +6,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_home_24"
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_consumegrade"
@@ -15,23 +15,19 @@
         <item
             android:id="@+id/nav_tools"
             android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_tools" />
+            android:title="소비 목표" />
         <item
             android:id="@+id/nav_share"
             android:icon="@drawable/ic_predict_24"
             android:title="잔고 예측" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="부가 서비스">
         <menu>
             <item
                 android:id="@+id/nav_sever_com"
                 android:icon="@drawable/ic_account_list"
                 android:title="@string/menu_custom" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_send" />
         </menu>
     </item>
 

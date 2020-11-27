@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-        
+
         con.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
