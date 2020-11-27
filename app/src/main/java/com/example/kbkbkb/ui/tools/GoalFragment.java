@@ -63,8 +63,6 @@ public class GoalFragment extends Fragment {
         adapterViewPager = new GoalFragment.MyPagerAdapter(getFragmentManager());
         vpPager.setAdapter(adapterViewPager);
 
-        CircleIndicator indicator = (CircleIndicator)root.findViewById(R.id.indicator);
-        indicator.setViewPager(vpPager);
         //CircleIndicator 설정
 //        CircleIndicator indicator = (CircleIndicator) root.findViewById(R.id.consume_indicator);
 //        indicator.setViewPager(vpPager);

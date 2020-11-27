@@ -17,18 +17,16 @@
             android:backgroundTint="@color/orange"
             android:id="@+id/add"/>
     </LinearLayout>
-    <androidx.viewpager.widget.ViewPager
-        android:layout_marginTop="40dp"
-        android:id="@+id/goal_vpPager"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="7"/>
-    <me.relex.circleindicator.CircleIndicator
-        android:id="@+id/indicator"
-        app:ci_drawable="@drawable/black_radius"
-        app:ci_height="7dp"
-        app:ci_width="7dp"
-        app:ci_margin="4dp"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"/>
+        android:layout_height="wrap_content">
+        <androidx.viewpager.widget.ViewPager
+            android:layout_marginTop="40dp"
+            android:id="@+id/goal_vpPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"/>
+    </ScrollView>
+
 </LinearLayout>
